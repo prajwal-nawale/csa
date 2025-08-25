@@ -1,16 +1,17 @@
 const express = require('express');
 const { userRouter }=require("./routes/user");
 const { courseRouter }=require("./routes/course");
+const   { adminRouter }=require("./routes/admin");
 const app=express();
 
 app.use(express.json());
 
-app.use("/user",userRouter);
-app.use ("/course",courseRouter);
+app.use("/v1/user",userRouter);
+app.use ("/v1/course",courseRouter);
+app.use("/v1/admin",adminRouter);
 
 
-createUserRoutes(app);
-createCourseRoutes(app);
+
 
 
 app.listen(3000);

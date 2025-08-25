@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const userRouter=Router();
 
-    userRouter.post("/user/signup",(req,res)=>{
+    userRouter.post("/signup",(req,res)=>{
     //namae,pass,email
     const name=req.body.name;
     const email=req.body.email;
@@ -14,7 +14,7 @@ const userRouter=Router();
 
     })
 
-    userRouter.post("/user/login",(req,res)=>{
+    userRouter.post("/login",(req,res)=>{
         //email,pass
         res.json({
         message:"user logged in"
@@ -22,7 +22,7 @@ const userRouter=Router();
     });
 
 
-    userRouter.get("/user/purchase",(req,res)=>{
+    userRouter.get("/purchase",(req,res)=>{
         res.json({
         message:"user logged in"
         })
