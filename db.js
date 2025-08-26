@@ -3,7 +3,6 @@ const Schema=mongoose.Schema;
 const ObjectId=Schema.Types.ObjectId;
 console.log("connecting to db");
 
-mongoose.connect("mongodb+srv://prajwalnawale:iwin@cluster0.jigxzhh.mongodb.net/csa"); 
 
 const userSchema=new Schema({
     email:{type:String,unique:true},
