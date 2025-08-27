@@ -1,26 +1,52 @@
 const { Router }=require("express");
 const adminRouter=Router();
+const jwt=require("jsonwebtoken");
+const JWT_SECRET="imgonnabeno1suitablecandidatetomarrydivya"
 
 const { adminModel}= require("../db");
 
-    adminRouter.post("/signup",(req,res)=>{
+    adminRouter.post("/signup",async (req,res)=>{
     //namae,pass,email
-    const name=req.body.name;
-    const email=req.body.email;
-    const password=req.body.password;
+        const {email,password,firstname,lastname}=req.body;
 
+        await adminModel.create({
+            email:email,
+            password:password,
+            firstname:firstname,
+            lastname:lastname
+        })
+        
         res.json({
-            message:"user signed up"
+            message:"Admin signed up"
         })
 
     })
 
-    adminRouter.post("/login",(req,res)=>{
+    adminRouter.post("/login",async (req,res)=>{
         //email,pass
-        res.json({
-        message:"user logged in"
+        const {email,password}=req.body;
+        const admin=await adminModel.findOne({
+            email:email,
+            password:password
         })
-    });    
+        if(admin){
+            const token=jwt.sign({
+                id:admin._id
+            },JWT_SECRET);
+            
+            res.json({
+            message:"Admin logged in",
+            token:token
+            })
+        }else{
+            res.status(402).json({
+                
+                message:"Admin Credentials Invalid"
+            })
+        }
+       
+        })
+    
     adminRouter.post("/course",(req,res)=>{
         res.json({
             message:"admin created course"
@@ -36,7 +62,7 @@ const { adminModel}= require("../db");
             message:"admin created course"
         })
     });
-        adminRouter.get("/course-bulk",(req,res)=>{
+        adminRouter.get("/course/bulk",(req,res)=>{
         res.json({
             message:"admin created course"
         })

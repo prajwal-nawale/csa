@@ -1,13 +1,12 @@
 const express = require('express');
-const mongoose=require('mongoose');
+const mongoose= require('mongoose');
 
 const { userRouter }=require("./routes/user");
 const { courseRouter }=require("./routes/course");
 const   { adminRouter }=require("./routes/admin");
 const app=express();
 
-app.use(express.json());
-
+ app.use(express.json());
 app.use("/v1/user",userRouter);
 app.use ("/v1/course",courseRouter);
 app.use("/v1/admin",adminRouter);
