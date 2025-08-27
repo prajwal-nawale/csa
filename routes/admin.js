@@ -1,7 +1,7 @@
 const { Router }=require("express");
 const adminRouter=Router();
 const jwt=require("jsonwebtoken");
-const JWT_SECRET="imgonnabeno1suitablecandidatetomarrydivya"
+const {JWT_ADMIN_SECRET}=require("../config")
 
 const { adminModel}= require("../db");
 
@@ -32,7 +32,7 @@ const { adminModel}= require("../db");
         if(admin){
             const token=jwt.sign({
                 id:admin._id
-            },JWT_SECRET);
+            },JWT_ADMIN_SECRET);
             
             res.json({
             message:"Admin logged in",

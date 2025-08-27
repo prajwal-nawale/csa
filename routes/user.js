@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const {userModel}=require("../db");
 const jwt =require("jsonwebtoken");
-const JWT_SECRET="imgonnaweigh65kgsoon";
+const  { JWT_USER_SECRET }=require("../config");
 
 
 
@@ -36,7 +36,7 @@ const userRouter=Router();
         if(user){
             const token=jwt.sign({
                 id:user._id
-            },JWT_SECRET);
+            },JWT_USER_SECRET);
             
             res.json({
             message:"user logged in",
