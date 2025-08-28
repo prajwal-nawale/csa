@@ -71,20 +71,45 @@ const { adminModel,courseModel}= require("../db");
             course:course._id
         })
     });
-        adminRouter.put("/course",(req,res)=>{
+    adminRouter.put("/course",adminMiddleware,async(req,res)=>{
+        const adminId=req.adminId;
+        const {title,description,price,imageURL,courseId}=req.body;
+        const course=await courseModel.updateOne({
+            _id:courseId,
+            creatorId:adminId
+        },{
+            title:title,
+            description:description,
+            imageURL:imageURL,
+            price:price
+        })
+        res.json({
+            message:"admin created course",
+            course:course
+        })
+    });
+
+    adminRouter.delete("/course",(req,res)=>{
         res.json({
             message:"admin created course"
         })
     });
-        adminRouter.delete("/course",(req,res)=>{
-        res.json({
-            message:"admin created course"
-        })
-    });
-        adminRouter.get("/course/bulk",(req,res)=>{
-        res.json({
-            message:"admin created course"
-        })
+     adminRouter.get("/course/bulk",adminMiddleware,async(req,res)=>{
+        const adminId=req.adminId;
+        const courses=await courseModel.find({
+            creatorId:adminId
+        });
+        if(courses){
+            res.json({
+                courses:courses
+            })
+            
+        }else{
+            res.status(403).json({
+                message:"no courses found"
+            })
+        }
+        
     });
 
 module.exports={
