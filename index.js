@@ -13,7 +13,7 @@ app.use("/v1/admin",adminRouter);
 
 
 async function main(){
-    await mongoose.connect("mongodb+srv://prajwalnawale:iwin@cluster0.jigxzhh.mongodb.net/csa");
+    await mongoose.connect("MONGO_URL");
     app.listen(3000);
     console.log("server started at port 3000");
 }
