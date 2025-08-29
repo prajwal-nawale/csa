@@ -3,7 +3,6 @@ const adminRouter=Router();
 const jwt=require("jsonwebtoken");
 const { JWT_ADMIN_SECRET }=require("../config")
 const { adminMiddleware }=require("../middleware/admin");
-
 const { adminModel,courseModel}= require("../db");
 
     adminRouter.post("/signup",async (req,res)=>{

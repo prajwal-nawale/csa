@@ -1,5 +1,5 @@
 const JWT_USER_SECRET="imgonnaweigh65kgsoon";
-const JWT_ADMIN_SECRET="imgonnabeno1suitablecandidatetomarrydivya";
+const JWT_ADMIN_SECRET="imgonnabeno1suitablecandidatetomarrydivyathatsforsure";
 
 module.exports={
     JWT_USER_SECRET:JWT_USER_SECRET,

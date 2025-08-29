@@ -8,7 +8,7 @@ function userMiddleware(req,res,next){
             message:"user not authenticated"
         })
     }else{
-    req.userid=decoded.id;
+    req.userId=decoded.id;
     next();
     }
 
